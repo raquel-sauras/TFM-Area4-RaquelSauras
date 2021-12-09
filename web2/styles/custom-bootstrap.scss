@@ -1,0 +1,63 @@
+@import 'custom-variables';
+
+// Import Bootstrap 5
+@import "~bootstrap/scss/bootstrap.scss";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "~react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+
+.btn {
+  font-weight: bold;
+  &:active, &:focus {
+    -webkit-box-shadow: 0 0 0 0.25rem $bluedevinta-l3;
+    box-shadow: 0 0 0 0.25rem $bluedevinta-l3;
+  }
+}
+
+.btn-white {
+  color: $bluedevinta;
+  &:hover, &:focus {
+    color: $bluedevinta;
+    background-color: $bluedevinta-l2 !important;
+  }
+}
+
+a {
+  color: $bluedevinta;
+}
+
+.nav-tabs .nav-link, .nav-tabs .nav-item.show .nav-link {
+  color: $grey;
+  font-weight: bold;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-radius: 0;
+  &:hover {
+    color: $bluedevinta-d1;
+    background-color: $bluedevinta-l3;
+    border-bottom: 2px solid $bluedevinta-d1 !important;
+  }
+  &.active {
+    color: $bluedevinta;
+    border-bottom: 2px solid $bluedevinta !important;
+  }
+}
+
+.cursor-wait{
+  cursor: wait !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.carousel-caption-hero {
+  position: absolute;
+  right: 10%;
+  bottom: 1.25rem;
+  left: 8%;
+  padding-top: 1.25rem;
+  padding-bottom: 16rem;
+  color: #FFFFFF;
+  text-align: center;
+}

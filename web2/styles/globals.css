@@ -1,0 +1,45 @@
+/* ensure all pages have Bootstrap CSS */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+
+.md-container {
+  max-width: 800px;
+  padding-top: 2rem;
+}
+
+.sml-card {
+  width: 22rem;
+  margin: 1rem 0;
+}
+
+.cntr-footer {
+  height: 80px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #ccc;
+}
+
+.sml-logo {
+  height: 1em;
+  margin-left: 10px;
+}

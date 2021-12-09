@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  api:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - model-serving
+  model-serving:
+    image: tensorflow/serving
+    environment:
+      MODEL_NAME: "model"
+    volumes:
+      - ./model:/models/model
+    ports:
+      - "8501:8501"

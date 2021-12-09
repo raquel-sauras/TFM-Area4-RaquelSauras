@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+$grid-gutter-width: 2rem;//8x
+
+$border-radius: 5px;
+
+$list-group-border-color: rgba(#fff, 0);
+$list-group-item-padding-x: 0;
+
+$black:             #222222;
+$grey:              #757575;
+$grey-l1:           #CCCCCC;
+$grey-l2:           #F2F2F2;
+$white:             #FFFFFF;
+
+$bluedevinta-d2:    #1E1250;
+$bluedevinta-d1:    #24089A;
+$bluedevinta:       #2900D2;
+$bluedevinta-l1:    #5E40DD;
+$bluedevinta-l2:    #D3CEEB;
+$bluedevinta-l3:    #EAE6FB;
+$blue-gradient:     linear-gradient(91.57deg, #1E1250 3.47%, #2900D2 100.85%);
+
+$sky:               #BDE2EA;
+$jungle:            #91B495;
+$jungle-l1:         #ECF7F2;
+$wiggins-d1:        #FF8A23;
+$wiggins:           #FFD684;
+$wiggins-l1:        #FFF7E6;
+$chill:             #FF6D69;
+$chill-l1:          #FFE2E1;
+
+$theme-colors: (
+  "primary":   $bluedevinta,
+  "secondary": $bluedevinta-l2,
+  "success":   $jungle,
+  "info":      $sky,
+  "warning":   $wiggins,
+  "danger":    $chill,
+  "light":     $grey-l2,
+  "light-grey":$grey-l1,
+  "grey":      $grey,
+  "dark":      $black
+);
+
+$gradient: $blue-gradient;
+
+$custom-colors: (
+  "primary-dark": $bluedevinta-d2,
+  "success-light": $jungle-l1,
+  "danger-light": $chill-l1,
+  "warning-light": $wiggins-l1
+);
+
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+$font-family-sans-serif: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif !default;
+$font-family-serif:      Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-base:       $font-family-sans-serif !default;
+$headings-font-weight:        700;
+
+$h0-font-size: 60px;
+$h1-font-size: 50px;
+$h2-font-size: 42px;
+$h3-font-size: 34px;
+$h4-font-size: 24px;
+$h5-font-size: 18px;
+
+$lg-font-size: 18px;
+$md-font-size: 16px;
+$sm-font-size: 14px;
+$xs-font-size: 12px;
+
+$font-sizes: (
+  0: $h0-font-size,
+  1: $h1-font-size,
+  2: $h2-font-size,
+  3: $h3-font-size,
+  4: $h4-font-size,
+  5: $h5-font-size,
+  6: $lg-font-size,
+  7: $md-font-size,
+  8: $sm-font-size,
+  9: $xs-font-size
+);
+
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25, //4px
+  2: $spacer * .5,  //8px
+  3: $spacer,       //16px
+  4: $spacer * 1.5, //24px
+  5: $spacer * 2.5, //40px
+  6: $spacer * 3.5, //56px
+  7: $spacer * 5,   //80px
+  8: $spacer * 10   //160px
+); 
+
+$box-shadow-sm: 0px 3px 4px rgba(0, 0, 0, 0.2);
+
+$btn-border-radius: 4px;
+$btn-focus-width: 2px;
+
+$navbar-toggler-padding-y:          .25rem;
+$navbar-toggler-padding-x:          .75rem;
+$navbar-toggler-font-size:          20px;
+$navbar-toggler-border-radius:      $btn-border-radius;
+$navbar-toggler-focus-width:        $btn-focus-width;
+
+$breadcrumb-divider: quote("/");
+$breadcrumb-divider-color: $white;
+
+$enable-negative-margins: true;
+
