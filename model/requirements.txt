@@ -1,0 +1,11 @@
+tensorflow-macos
+tensorflow
+#tf-nightly==2.8.0.dev20211203
+tensorflow-metal
+numpy~=1.21.4
+requests~=2.26.0
+keras~=2.7.0
+#keras-nightly
+pillow
+jupyter
+matplotlib

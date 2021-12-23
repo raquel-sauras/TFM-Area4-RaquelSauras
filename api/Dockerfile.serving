@@ -1,0 +1,3 @@
+FROM tensorflow/serving
+ENV MODEL_NAME="model"
+COPY ./model /models/model

@@ -17,7 +17,7 @@ def image_classifier():
     if uploaded_file.filename != '':
         image_path = os.path.join('static', uploaded_file.filename)
         uploaded_file.save(image_path)
-        class_name = model.get_prediction(image_path)
+        class_name = model.get_prediction(app.logger, image_path)
         result = {
             'class_name': class_name,
             'image_path': image_path,

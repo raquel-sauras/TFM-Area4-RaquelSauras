@@ -1,89 +1,82 @@
 import Head from 'next/head'
-import { Container, Row, Card, Button } from 'react-bootstrap'
+import {Container, Row, Card, Button, Form, Image} from 'react-bootstrap'
+import {PageHeader} from "../Components/Layouts/PageHeader";
+import {DefaultLayout} from "../Components/Layouts/DefaultLayout";
+import {ChangeEvent, FormEvent, SyntheticEvent, useState} from "react";
+
+interface Result {
+  class_name: string;
+  image_path: string;
+}
 
 export default function Home() {
-  return (
-      <Container className="md-container">
-        <Head>
-          <title>ReactJS with react-bootstrap</title>
-          <link rel="icon" href="/favicon-32x32.png" />
-        </Head>
-        <Container>
-          <h1>
-            Welcome to <a href="https://nextjs.org">Next.js!</a>
-          </h1>
-          <p>
-            Get started by editing <code>pages/index.js</code>
-          </p>
-          <Container>
-            <Row className="justify-content-md-between">
-              <Card className="sml-card">
-                <Card.Body>
-                  <Card.Title>Documentation</Card.Title>
-                  <Card.Text>
-                    Find in-depth information about Next.js features and API.
-                  </Card.Text>
-                  <Button variant="primary" href="https://nextjs.org/docs">
-                    More &rarr;
-                  </Button>
-                </Card.Body>
-              </Card>
-              <Card className="sml-card">
-                <Card.Body>
-                  <Card.Title>Learn</Card.Title>
-                  <Card.Text>
-                    Learn about Next.js in an interactive course with quizzes!
-                  </Card.Text>
-                  <Button variant="primary" href="https://nextjs.org/learn">
-                    More &rarr;
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Row>
-            <Row className="justify-content-md-between">
-              <Card className="sml-card">
-                <Card.Body>
-                  <Card.Title>Examples</Card.Title>
-                  <Card.Text>
-                    Discover and deploy boilerplate example Next.js projects.
-                  </Card.Text>
-                  <Button
-                      variant="primary"
-                      href="https://github.com/vercel/next.js/tree/master/examples"
-                  >
-                    More &rarr;
-                  </Button>
-                </Card.Body>
-              </Card>
-              <Card className="sml-card">
-                <Card.Body>
-                  <Card.Title>Deploy</Card.Title>
-                  <Card.Text>
-                    Instantly deploy your Next.js site to a public URL with
-                    Vercel.
-                  </Card.Text>
-                  <Button
-                      variant="primary"
-                      href="https://vercel.com/new?utm_source=github&utm_medium=example&utm_campaign=next-example"
-                  >
-                    More &rarr;
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Row>
-          </Container>
-        </Container>
+  const [image, setImage] = useState<Blob | string>("");
+  const [result, setResult] = useState<Result|undefined>(undefined);
 
-        <footer className="cntr-footer">
-          <a
-              href="https://vercel.com?filter=next.js&utm_source=github&utm_medium=example&utm_campaign=next-example"
-              target="_blank"
-              rel="noopener noreferrer"
-          >
-            Powered by{' '}
-            <img src="/vercel.svg" alt="Vercel Logo" className="sml-logo" />
-          </a>
-        </footer>
-      </Container>
+  const uploadToClient = (event: SyntheticEvent) => {
+    console.log("uploading image");
+    const target = event.target;
+    // @ts-ignore
+    if (target.files && target.files[0]) {
+      // @ts-ignore
+      const i = target.files[0];
+
+      setImage(i);
+    }
+  };
+
+  const classifyImage = async (event: ChangeEvent | FormEvent): Promise<void> => {
+    event.preventDefault()
+    console.log("submit");
+    const body = new FormData();
+    body.append("file", image);
+    const res = await fetch('http://localhost:8080/api/v1/predict', {
+      method: "POST",
+      body: body,
+    })
+
+    const gotResult = await res.json() as Result
+
+    console.log(gotResult);
+    setResult(gotResult)
+  }
+  return (
+      <DefaultLayout
+          title='Raquel Sauras Salas TFM'
+          mainClassName='container-fluid p-0 m-0 overflow-hidden'>
+        <PageHeader title='Aprendizaje profundo y neumonía' subtitle='modelo de clasificación de imágenes de rayos-X para una detección más rápida' size='m' />
+
+        <div className='bg-info container-fluid d-flex text-primary-dark flex-column justify-content-center align-items-center py-2'>
+          <p className='fs-3 fw-bold m-0'>TFM-Bioinformàtica i Bioestadística Àrea 4</p>
+        </div>
+
+        <div className='bg-success-light row text-primary-dark py-5 justify-content-center'>
+          <div className='col-10 col-md-8 col-lg-6 d-flex flex-wrap justify-content-center'>
+            <Form onSubmit={classifyImage}>
+              <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Image to classify</Form.Label>
+                <Form.Control type="file" onChange={uploadToClient} />
+              </Form.Group>
+
+              <input type='submit' name='submit' id='submit'/>
+            </Form>
+          </div>
+        </div>
+
+        {result !== undefined && (
+            <div className='bg-success-light row text-primary-dark py-5 justify-content-center'>
+              <div className='col-10 col-md-8 col-lg-6 d-flex flex-wrap justify-content-center'>
+                <div className="container">
+                  <h1>Predicted Class: {result.class_name}</h1>
+                  <hr />
+                  <div>
+                    <Image alt={""} src={ "http://ec2-52-18-21-252.eu-west-1.compute.amazonaws.com:8080/" + result.image_path } className="img-rounded" width="400" height="200" />
+                  </div>
+                </div>
+              </div>
+            </div>
+        )}
+
+      </DefaultLayout>
   )
 }
