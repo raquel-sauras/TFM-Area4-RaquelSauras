@@ -1,5 +1,4 @@
-import Head from 'next/head'
-import {Container, Row, Card, Button, Form, Image} from 'react-bootstrap'
+import {Form, Image} from 'react-bootstrap'
 import {PageHeader} from "../Components/Layouts/PageHeader";
 import {DefaultLayout} from "../Components/Layouts/DefaultLayout";
 import {ChangeEvent, FormEvent, SyntheticEvent, useState} from "react";
@@ -30,7 +29,7 @@ export default function Home() {
     console.log("submit");
     const body = new FormData();
     body.append("file", image);
-    const res = await fetch('http://localhost:8080/api/v1/predict', {
+    const res = await fetch('http://ec2-3-249-140-223.eu-west-1.compute.amazonaws.com:8080/api/v1/predict', {
       method: "POST",
       body: body,
     })
