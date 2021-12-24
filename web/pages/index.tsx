@@ -8,6 +8,8 @@ interface Result {
   image_path: string;
 }
 
+const apiHost = 'https://raquel-sauras-tfm.psicoeducacio.com';
+
 export default function Home() {
   const [image, setImage] = useState<Blob | string>("");
   const [result, setResult] = useState<Result|undefined>(undefined);
@@ -29,7 +31,7 @@ export default function Home() {
     console.log("submit");
     const body = new FormData();
     body.append("file", image);
-    const res = await fetch('https://raquel-sauras-tfm.psicoeducacio.com/api/v1/predict', {
+    const res = await fetch(apiHost + '/api/v1/predict', {
       method: "POST",
       body: body,
     })
@@ -69,7 +71,7 @@ export default function Home() {
                   <h1>Predicted Class: {result.class_name}</h1>
                   <hr />
                   <div>
-                    <Image alt={""} src={ "http://ec2-52-18-21-252.eu-west-1.compute.amazonaws.com:8080/" + result.image_path } className="img-rounded" width="400" height="200" />
+                    <Image alt={""} src={ apiHost + "/" + result.image_path } className="img-rounded" width="400" height="200" />
                   </div>
                 </div>
               </div>

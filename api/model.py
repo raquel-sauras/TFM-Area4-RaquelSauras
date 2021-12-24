@@ -5,7 +5,7 @@ import requests
 
 
 SIZE=64
-MODEL_URI='http://model-serving:8501/v1/models/model:classify'
+MODEL_URI='http://model-serving:8501/v1/models/model:predict'
 CLASSES = ['NORMAL', 'PNEUMONIA BACTERIA', 'PNEUMONIA VIRUS']
 
 def get_prediction(logger, image_path):
