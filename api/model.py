@@ -13,7 +13,6 @@ def get_prediction(logger, image_path):
     logger.info('Getting prediction')
     image = tf.keras.preprocessing.image.load_img(image_path, target_size=(SIZE, SIZE))
     image = tf.keras.preprocessing.image.img_to_array(image)
-    image = tf.keras.applications.mobilenet_v2.preprocess_input(image)
     image = np.expand_dims(image, axis=0)
 
     data = json.dumps({

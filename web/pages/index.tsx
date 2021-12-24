@@ -9,6 +9,7 @@ interface Result {
 }
 
 const apiHost = 'https://raquel-sauras-tfm.psicoeducacio.com';
+//const apiHost = 'http://localhost:8080';
 
 export default function Home() {
   const [image, setImage] = useState<Blob | string>("");
