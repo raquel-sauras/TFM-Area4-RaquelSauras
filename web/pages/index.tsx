@@ -29,7 +29,7 @@ export default function Home() {
     console.log("submit");
     const body = new FormData();
     body.append("file", image);
-    const res = await fetch('http://ec2-3-249-140-223.eu-west-1.compute.amazonaws.com:8080/api/v1/predict', {
+    const res = await fetch('https://raquel-sauras-tfm.psicoeducacio.com/api/v1/predict', {
       method: "POST",
       body: body,
     })

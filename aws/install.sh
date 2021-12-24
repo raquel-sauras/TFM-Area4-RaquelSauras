@@ -14,6 +14,7 @@ sudo chmod +x /usr/bin/docker-compose
 
 cd web
 docker build . -t web
+docker run -d --rm -p 3000:3000  --name web web:latest
 
 cd ../api
 docker-compose up -d

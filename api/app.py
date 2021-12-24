@@ -11,6 +11,11 @@ app = Flask(__name__)
 CORS(app)
 
 
+@app.route('/', methods=['GET'])
+def health():
+    return json.dumps({"status": "ok"})
+
+
 @app.route('/api/v1/predict', methods=['POST'])
 def image_classifier():
     uploaded_file = request.files['file']
